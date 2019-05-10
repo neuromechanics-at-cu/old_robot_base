@@ -1,6 +1,14 @@
-  function [ Data ] = get_vsign( Data, num_trials )
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+%% Get Velocity signed, as outward is positive, inward negative.
+% Created By Gary Bruening
+% Updated: 5-10-2019
+% 
+% Calculated tangetial and radail velocities for use in the get movement
+% times function.
+% 
+% Tangential velocity calculated by differentiating the distance from the
+% target. Radial calculated from the center of the screen, may not work to
+% well for forward and back movements.
+function [ Data ] = get_vsign( Data, num_trials )
 
         Px = Data.x; Py = Data.y;
         Vx = diff(Px)/0.005; Vy = diff(Py)/0.005;
@@ -14,6 +22,7 @@
             Pdiff{i} = diff23f5( P(1:num_frames(i),i), 1/200, 10 ); %doesn't work very well
             Data.v_sign(1:num_frames(i),i) = Pdiff{i}(:,2);
         end
+        
         % Filter robot velocity using Savitzky-Golay filter (smooths w/o greatly distorting signal)
         Data.vx_orig=Data.vx;
         Data.vy_orig=Data.vy;
@@ -47,6 +56,4 @@
             end
         end
         Data.RadV=sgolayfilt(Data.RadV,3,21);
-
-
 end

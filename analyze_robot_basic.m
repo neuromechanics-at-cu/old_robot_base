@@ -1,4 +1,5 @@
-% Plots have been commented out with marker '%%%###'
+%% Function to get the basic components out and saved into Data.
+% Updated 5-10-2019
 function [Data, Ev] = analyze_robot_basic(T, Ev, opts,c,subj)
 
 fsR=200; tsR=1/fsR; % robot sampling frequency
@@ -55,6 +56,7 @@ end
 [sortedframes idx] = sort(frames);
 longtrials = idx(sortedframes > opts.longtrialtime_frames);
 
+% This is mainly legacy, I don't use it.
 % There are some really long trials because I start collecting when the
 % state changes to home. Ex. trial 21 in the metabolic curve protocol is ~1
 % minute.
@@ -119,7 +121,7 @@ Data.nulltrials = find(strcmp(T.trialtypename,'null')==1);
 Data.divtrials = find(strcmp(T.trialtypename,'div')==1);
 Data.curltrials = find(strcmp(T.trialtypename,'curl')==1);
 
-%% PLOTS
+%% Error Checking
 %     figure;
 %     subplot(231); plot(T.framedata(1).x, T.framedata(1).y); ylabel('robot y'); xlabel('robot x');
 %  if ischar(T.config.curltrials)
@@ -136,7 +138,5 @@ Data.curltrials = find(strcmp(T.trialtypename,'curl')==1);
 %     subplot(235); plot(Data.x(:,trial2plot1),Data.y(:,trial2plot1)); ylabel('robot x'); xlabel('robot y');
 %     subplot(236); plot(Data.x(:,trial2plot2), Data.y(:,trial2plot2)); ylabel('robot x'); xlabel('robot y');
 %% Find and fix discontinuities
- Data = find_discont(Data.x, Data.y, Data.vy, Data, c,subj);
- 
- %Data = fix_discont(Data);
+Data = find_discont(Data.x, Data.y, Data.vy, Data, c,subj);
 

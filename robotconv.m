@@ -1,6 +1,4 @@
-function [t] = robotconv(fid) 
-
-%CONV  Convert binary robot C data to ascii
+%% CONV  Convert binary robot C data to ascii
 %  This function reads in data from the specified 
 %  fileid and converts it to ascii and saves it to
 %  a structure.  
@@ -9,8 +7,10 @@ function [t] = robotconv(fid)
 %     --outputs   : data structure, (t)
 %     --calls     : n/a
 %  Created by Alaa Ahmed
-%  Last modified  22-Dec-2009
+%  Last modified  5-10-2019
+%  By Gary Bruening
 
+function [t] = robotconv(fid) 
 %read in the header
 binheader = fread(fid,300,'char');   
 header = char(binheader');
@@ -25,7 +25,7 @@ while number
         number=0;
     else
         j=j+1;
-        if j>100000;
+        if j>100000
             fprintf('Files did not copy correctly. Recopy them');
             break;
         end
@@ -54,11 +54,6 @@ colheaderstr={'frame';'x';'y';'vx';'vy';'fx';'fy';'fpfx';...
     'grasp';'targetx';'targety';'homex';'homey';'statenumber';...
     'avstatenumber';'robotstatenumber';...
     'cur_x'; 'cur_y'; 'vrx_px'; 'vry_px'; 'vrx_m'; 'vry_m' };
-% colheaderstr={'frame';'time';'x';'y';'vx';'vy';'fx';'fy';'fpfx';...
-%     'fpfy';'fpfz';'fpmx';'fpmy';'fpmz';'time_ms';'ftx';'fty';'ftz';...
-%     'grasp';'targetx';'targety';'homex';'homey';'statenumber';...
-%     'avstatenumber';'robotstatenumber';...
-%     'cur_x'; 'cur_y'; 'vrx_px'; 'vry_px'; 'vrx_m'; 'vry_m' };
 
 %read in data
 status = fseek(fid,hlen,-1);
