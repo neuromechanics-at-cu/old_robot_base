@@ -11,4 +11,4 @@ This repo is set up to house an example for the base code to analyze the data fi
 
 ### Running the code
 Just run Dataread.m and it should do everything. 
-Can add a file to write to csv to analyze within r or python
+Can add a file to write to csv to analyze within r or python.
