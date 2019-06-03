@@ -1,5 +1,5 @@
 # Old Robot Base Code
-This repo is set up to house an example for the base code to analyze the data files from the older robot.
+This repo is set up to house an example for the base code to analyze the data files from the older robot. Uses the alaa account on the old robot.
 
 ### Primary Files
 1. DataRead
