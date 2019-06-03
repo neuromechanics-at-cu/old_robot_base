@@ -11,7 +11,9 @@
 clear all
 %% Experiment specific details
 % The parent folder for the mfiles and dat files 
-projpath = 'E:\Google Drive\old_robot_base';
+% If you keep the same folder system as in the git repo this shouldn't need
+% to change.
+projpath = pwd;
 % Make sure to addpath where the mfiles are stored.
 addpath(projpath);
 
@@ -36,7 +38,7 @@ cd(datafolder_names);
 list=textscan(list,'%s','delimiter','/n');
 
 % This is where you say which subjects you want to analyze, if all you can
-% just make subjarry = list{1}(1:length(list))
+% just make subjarry = list{1}(1:length(list{1}))
 subjarray = list{1}(1:1);
 subjtoload = 1;
 nsubj=length(subjtoload);
