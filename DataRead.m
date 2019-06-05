@@ -25,7 +25,7 @@ expname = 'Example';
 % Good idea to store the data in this format, where data contains folders
 % for each individual subject, and inside the subject folders are the
 % specific condition files.
-datafolder_names = [projpath '\Data'];
+datafolder_names = [projpath filesep 'Data'];
 expfolder= [projpath];
 
 % Settig what you want the output mat file to be named.
@@ -33,15 +33,16 @@ filename = 'Example';
 fprintf('%s \n',filename);
 
 % Pulls the names of the data from the data folder and stores in an array
+% This is where you say which subjects you want to analyze. subjtoload will
+% be an array of subject numbers that you want to load.
+% If all subjects, subjtoload = [1:length(list)-2];
 cd(datafolder_names);
-[status,list]=system('dir /B');
-list=textscan(list,'%s','delimiter','/n');
-
-% This is where you say which subjects you want to analyze, if all you can
-% just make subjarry = list{1}(1:length(list{1}))
-subjarray = list{1}(1:1);
-subjtoload = 1;
+subjtoload = 1:4;
 nsubj=length(subjtoload);
+
+list = dir;
+list = list(2+subjtoload);
+subjarray = list.name;
 
 cd(expfolder);
 
